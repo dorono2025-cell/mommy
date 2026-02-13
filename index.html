@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Queen 👑</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{margin:0;font-family:'Poppins',sans-serif;overflow:hidden;background:black;color:white;}
+
+/* ================= ROYAL INTRO ================= */
+#royalIntro{
+position:fixed;inset:0;
+background:linear-gradient(to bottom,#020111,#000);
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+overflow:hidden;
+animation:fadeOut 2s ease forwards;
+animation-delay:5s;
+z-index:3;
+}
+@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
+
+.star{
+position:absolute;width:2px;height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{from{opacity:0.3;}to{opacity:1;}}
+
+.moon{
+font-size:100px;
+animation:float 4s infinite alternate ease-in-out;
+}
+@keyframes float{from{transform:translateY(0);}to{transform:translateY(25px);}}
+
+.royalText{
+font-family:'Great Vibes',cursive;
+font-size:60px;margin-top:20px;
+text-shadow:0 0 20px gold,0 0 40px #ff00ff;
+animation:glow 2s infinite alternate;
+}
+@keyframes glow{from{text-shadow:0 0 20px gold;}
+to{text-shadow:0 0 60px #ff00ff,0 0 80px gold;}}
+
+.sparkle{
+position:absolute;top:-20px;
+animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(110vh);}}
+
+/* ================= PASSCODE ================= */
+#intro{
+position:fixed;inset:0;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+background:radial-gradient(circle,#3a0066,#000);
+opacity:0;
+animation:fadeIn 2s ease forwards;
+animation-delay:5s;
+z-index:2;
+}
+@keyframes fadeIn{to{opacity:1;}}
+
+.pass-box{
+margin-top:20px;
+background:rgba(255,255,255,0.1);
+padding:25px;border-radius:25px;
+box-shadow:0 0 40px gold;
+text-align:center;
+}
+
+input{padding:10px;border:none;border-radius:10px;text-align:center;}
+button{
+padding:10px 20px;border:none;border-radius:20px;
+margin-top:10px;cursor:pointer;
+background:gold;color:black;font-weight:bold;
+transition:0.3s;}
+button:hover{transform:scale(1.1);}
+
+/* ================= MAIN SCREEN ================= */
+#main{
+display:none;
+position:fixed;inset:0;
+background:radial-gradient(circle at top,#4b0082,#1a0033,#000);
+overflow:auto;text-align:center;padding-top:60px;
+}
+
+#main h1{
+font-family:'Great Vibes',cursive;
+font-size:55px;color:#ffccff;
+}
+
+#typedMessage{
+max-width:750px;margin:20px auto;
+font-size:18px;line-height:1.6;
+min-height:200px;
+}
+
+/* Butterflies */
+.butterfly{
+position:absolute;
+animation:fly 15s linear infinite;
+font-size:22px;
+}
+@keyframes fly{
+from{transform:translateX(-10vw);}
+to{transform:translateX(110vw);}
+}
+
+/* Frames */
+.gallery{
+display:flex;justify-content:center;
+gap:40px;flex-wrap:wrap;margin-top:30px;
+}
+
+.frame{
+padding:15px;border-radius:30px;
+background:linear-gradient(135deg,gold,#ff66ff,#cc00ff);
+box-shadow:0 0 30px gold,0 0 60px #ff00ff;
+transition:0.4s;
+}
+
+.frame img{
+width:350px;height:350px;
+object-fit:cover;border-radius:20px;
+}
+
+/* ================= FINAL SCREEN ================= */
+#love{
+display:none;
+position:fixed;inset:0;
+background:black;
+justify-content:center;align-items:center;
+flex-direction:column;
+font-family:'Great Vibes',cursive;
+font-size:80px;
+color:#ff66ff;
+text-shadow:0 0 30px #ff00ff,0 0 60px gold;
+overflow:hidden;
+}
+
+.firework{
+position:absolute;width:6px;height:6px;
+border-radius:50%;
+animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+to{transform:translate(var(--x),var(--y));opacity:0;}
+}
+
+.confetti{
+position:absolute;
+top:-10px;
+animation:fallConf linear infinite;
+}
+@keyframes fallConf{
+to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop autoplay>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ROYAL INTRO -->
+<div id="royalIntro">
+<div class="moon">🌙😊</div>
+<div class="royalText">Welcome My Queen 👑</div>
+</div>
+
+<!-- PASSCODE -->
+<div id="intro">
+<h1 style="font-family:'Great Vibes',cursive;">Enter Royal Passcode</h1>
+<div class="pass-box">
+<input type="password" id="passcode" placeholder="0211"><br>
+<button onclick="enterSite()">Enter Kingdom</button>
+</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<h1>Happy Valentine’s Day, Mom 💜</h1>
+<div id="typedMessage"></div>
+
+<div class="gallery">
+<div class="frame"><img src="pic1.jpg"></div>
+<div class="frame"><img src="pic2.jpg"></div>
+<div class="frame"><img src="pic3.jpg"></div>
+</div>
+
+<div style="margin-top:30px;">
+<button onclick="celebrate()">YES 💖</button>
+<button onclick="alert('You can’t say no to love 😭💜')">NO</button>
+</div>
+</div>
+
+<!-- FINAL -->
+<div id="love">
+I LOVE YOU MOM 💜
+</div>
+
+<script>
+document.addEventListener("click",()=>{bgMusic.play().catch(()=>{});},{once:true});
+
+/* Stars */
+for(let i=0;i<120;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
+royalIntro.appendChild(star);
+}
+
+/* Sparkle Rain */
+for(let i=0;i<60;i++){
+let heart=document.createElement("div");
+heart.className="sparkle";
+heart.innerHTML=Math.random()>0.5?"💖":"✨";
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(10+Math.random()*20)+"px";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+royalIntro.appendChild(heart);
+}
+
+/* Butterflies */
+for(let i=0;i<6;i++){
+let b=document.createElement("div");
+b.className="butterfly";
+b.innerHTML="🦋";
+b.style.top=(20+Math.random()*60)+"%";
+b.style.animationDuration=(10+Math.random()*10)+"s";
+main.appendChild(b);
+}
+
+function enterSite(){
+if(passcode.value==="0211"){
+intro.style.display="none";
+main.style.display="block";
+typeMessage();
+}else{
+alert("Wrong passcode 💔");
+}
+}
+
+function typeMessage(){
+const text=`Happy Valentine’s Day, Mom.
+I just want to thank you for all the love, care, and sacrifices you make for me every single day. You are my first best friend, my biggest supporter, and the person who always believes in me even when I doubt myself.
+
+Today I want to celebrate you and remind you how special you are to me.
+So Mom… will you be my Valentine? 💖`;
+let i=0;
+typedMessage.innerHTML="";
+const typing=setInterval(()=>{
+typedMessage.innerHTML+=text.charAt(i);
+i++;
+if(i>=text.length) clearInterval(typing);
+},35);
+}
+
+function celebrate(){
+main.style.display="none";
+love.style.display="flex";
+
+const colors=["#ff0000","#ff9900","#ffff00","#00ff00","#00ffff","#0000ff","#cc00ff"];
+for(let i=0;i<150;i++){
+let fw=document.createElement("div");
+fw.className="firework";
+fw.style.left="50%";
+fw.style.top="50%";
+fw.style.background=colors[Math.floor(Math.random()*colors.length)];
+fw.style.setProperty('--x',(Math.random()-0.5)*800+"px");
+fw.style.setProperty('--y',(Math.random()-0.5)*800+"px");
+love.appendChild(fw);
+setTimeout(()=>fw.remove(),1000);
+}
+
+for(let i=0;i<100;i++){
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.innerHTML="🎉";
+conf.style.left=Math.random()*100+"%";
+conf.style.animationDuration=(3+Math.random()*5)+"s";
+love.appendChild(conf);
+}
+}
+</script>
+</body>
+</html>
